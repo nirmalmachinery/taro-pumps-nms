@@ -141,11 +141,6 @@
 
   .header-phone{display:none;}
 
-  @media (max-width:880px){
-    nav.main-nav{display:none;}
-    .header-actions .btn-ghost-label{display:none;}
-  }
-
   /* ===== HERO ===== */
   .hero{
     background:
@@ -174,7 +169,6 @@
   }
   .hero-btns{display:flex; gap:12px; flex-wrap:wrap;}
 
-  /* Spec-plate stat stack — signature element, riffing on pump nameplate tags */
   .plate-stack{
     display:grid;
     grid-template-rows:auto auto auto;
@@ -245,7 +239,19 @@
   }
   .listing-card a:hover{text-decoration:underline;}
 
-  .ripple-divider{height:46px; width:100%; display:block;}
+  /* Taro badge — text-only, no image needed */
+  .taro-badge{
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28);
+    border-radius:6px; padding:8px 14px; margin-top:6px;
+    font-family:'Manrope', Arial, sans-serif; font-weight:800;
+    font-size:14px; color:var(--white); letter-spacing:0.02em;
+    text-decoration:none; transition:background 0.18s;
+  }
+  .taro-badge:hover{background:rgba(255,255,255,0.2);}
+  .taro-badge .tb-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--marigold); flex-shrink:0;
+  }
 
   /* ===== SECTION shells ===== */
   .sect{padding:84px 0;}
@@ -299,7 +305,7 @@
   .range-tag:hover{background:rgba(37,99,196,0.08); border-color:var(--terracotta); color:var(--terracotta-deep); transform:translateY(-2px);}
   .range-note{font-size:13px; color:var(--muted); font-style:italic;}
 
-  /* ===== PROCESS (signature: real install sequence) ===== */
+  /* ===== PROCESS ===== */
   .process-list{display:flex; flex-direction:column;}
   .p-step{
     display:grid; grid-template-columns:64px 1fr; gap:22px;
@@ -314,7 +320,7 @@
   .p-step h4{color:var(--white); font-size:1.08rem; margin-bottom:6px;}
   .p-step p{color:rgba(255,255,255,0.65); font-size:14.5px; max-width:60ch;}
   .p-step .p-brand{
-    display:inline-block; margin-top:10px; font-family:'Manrope', Arial, sans-serif; font-weight:800;
+    display:inline-block; margin-top:10px; font-family:'Manrope', Arial, sans-serif;
     font-size:11.5px; color:var(--lake-deep); background:var(--marigold);
     padding:3px 10px; border-radius:5px; font-weight:600;
   }
@@ -333,7 +339,7 @@
   @media (max-width:760px){ .why-grid{grid-template-columns:1fr;} }
 
   /* ===== REVIEWS ===== */
-  .rev-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .rev-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;}
   .rev-card{
     background:var(--white); border:1px solid var(--border); border-radius:14px;
     padding:24px; display:flex; flex-direction:column; gap:12px;
@@ -342,28 +348,10 @@
   .rev-stars svg{width:15px; height:15px; fill:currentColor; stroke:none;}
   .rev-card p{font-size:14.5px; color:var(--ink); font-style:italic; flex-grow:1;}
   .rev-who{font-size:13px; color:var(--muted); font-weight:600;}
-  .rev-source{font-size:13px; color:var(--muted); margin-top:-28px; margin-bottom:22px;}
+  .rev-source{font-size:13px; color:var(--muted); margin-bottom:22px;}
   .rev-source a{color:var(--lake); font-weight:700; text-decoration:none;}
   .rev-source a:hover{text-decoration:underline;}
   @media (max-width:860px){ .rev-grid{grid-template-columns:1fr;} }
-
-  /* ===== OFFICIAL LISTING ===== */
-  .listing-band{background:var(--marble);}
-  .listing-panel{
-    border-top:1px solid var(--border);
-    border-bottom:1px solid var(--border);
-    padding:34px 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:24px;
-  }
-  .listing-panel h2{font-size:1.35rem; margin-bottom:6px;}
-  .listing-panel p{color:var(--muted); font-size:14.5px; max-width:58ch;}
-  @media (max-width:760px){
-    .listing-panel{align-items:flex-start; flex-direction:column;}
-    .listing-panel .btn{width:100%; justify-content:center;}
-  }
 
   /* ===== FAQ ===== */
   .faq-list{max-width:760px;}
@@ -436,7 +424,6 @@
   }
   .mob-toggle:hover, .mob-toggle:focus-visible{background:rgba(255,255,255,0.08);}
   .mob-toggle svg{width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:2;}
-  /* Animate hamburger → X */
   .mob-toggle .bar-top, .mob-toggle .bar-mid, .mob-toggle .bar-bot{
     transition:transform 0.22s, opacity 0.18s;
   }
@@ -464,48 +451,31 @@
 
   @media (max-width:880px){
     .mob-toggle{display:flex;}
-    /* Keep header from getting too crowded — hide the Get Directions ghost */
     .header-actions .btn-ghost{display:none;}
-    /* Shrink brand to fit header on small screens */
     .header-inner{gap:10px; height:64px;}
     .brand{gap:8px;}
     .brand-mark{width:34px; height:34px; border-radius:8px;}
     .brand-mark svg{width:17px; height:17px;}
     .brand-text strong{font-size:14px;}
-    /* Hide the long subtitle — it's in the footer and hero already */
     .brand-text span{display:none;}
   }
 
-  /* ===== HERO — single column on mobile ===== */
   @media (max-width:760px){
     .hero{padding:36px 0 0;}
-    .hero-grid{
-      grid-template-columns:1fr;
-      gap:28px;
-      padding-bottom:36px;
-    }
+    .hero-grid{grid-template-columns:1fr; gap:28px; padding-bottom:36px;}
     .hero h1{max-width:none;}
     .hero-sub{font-size:15px; max-width:none;}
     .hero-btns{flex-direction:column; gap:10px;}
     .hero-btns .btn{width:100%; justify-content:center; padding:14px 20px; font-size:15px;}
     .hero-eyebrow{font-size:11px;}
     .plate{padding:14px 18px;}
-    .plate-stack{
-      grid-template-rows:auto auto auto;
-      min-height:0;
-    }
+    .plate-stack{grid-template-rows:auto auto auto; min-height:0;}
     .plate .p-num{font-size:1.35rem;}
     .plate .p-label{font-size:11.5px;}
-    .plate.location-card{
-      min-height:118px;
-    }
-    .location-card .p-num{
-      font-size:1.08rem;
-      max-width:none;
-    }
+    .plate.location-card{min-height:118px;}
+    .location-card .p-num{font-size:1.08rem; max-width:none;}
   }
 
-  /* ===== GENERAL SECTION PADDING — mobile ===== */
   @media (max-width:760px){
     .sect{padding:52px 0;}
     .sect-head{margin-bottom:28px;}
@@ -514,7 +484,6 @@
     .call-box{padding:24px 20px;}
     .call-box h2{font-size:1.45rem;}
     footer{padding:40px 0 20px;}
-    /* a bit more finger-friendly touch targets on FAQ */
     .faq-q{padding:18px 4px;}
   }
 </style>
@@ -525,8 +494,6 @@
 <svg style="display:none">
   <symbol id="i-drop" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.5s7 8.2 7 12.8a7 7 0 1 1-14 0c0-4.6 7-12.8 7-12.8Z"/></symbol>
   <symbol id="i-gauge" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path stroke-linecap="round" d="M12 13 8 9.5M12 5v1.5M5 13H3.5M20.5 13H19"/></symbol>
-  <symbol id="i-pipe" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9h12a4 4 0 0 1 4 4v6M3 9V6M7 9V6M3 15h12"/></symbol>
-  <symbol id="i-plug" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v5M15 3v5M7 8h10v3a5 5 0 0 1-10 0V8ZM12 16v5"/></symbol>
   <symbol id="i-wheat" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21V8M12 8c-3 0-5-2-5-5 3 0 5 2 5 5ZM12 8c3 0 5-2 5-5-3 0-5 2-5 5ZM12 13c-2.6 0-4.4-1.8-4.4-4.4 2.6 0 4.4 1.8 4.4 4.4ZM12 13c2.6 0 4.4-1.8 4.4-4.4-2.6 0-4.4 1.8-4.4 4.4Z"/></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5M6 10v9h12v-9"/></symbol>
   <symbol id="i-factory" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21V11l5 3v-3l5 3V8l5 4v9H3Z"/></symbol>
@@ -539,6 +506,7 @@
   <symbol id="i-plus" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17.5 4 20l1-3.7A8 8 0 1 1 12 20a8 8 0 0 1-5-1.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 9.3c0 3.6 2.8 6.2 6.2 6.2.5-.6.6-1.5.2-1.9l-1.4-.8c-.3-.2-.7-.1-1 .1l-.5.5a4.3 4.3 0 0 1-2.5-2.5l.5-.5c.2-.3.3-.7.1-1L9.6 8a1 1 0 0 0-1.9.2c0 .4-.1.7-.1 1.1Z"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.8 6.3.7-4.7 4.3 1.3 6.2L12 16.9 6.4 20l1.3-6.2L3 9.5l6.3-.7L12 3Z"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></symbol>
 </svg>
 
 <!-- HEADER -->
@@ -565,7 +533,6 @@
         <svg class="icon"><use href="#i-phone"/></svg>Call
       </a>
     </div>
-    <!-- Hamburger — visible only on mobile -->
     <button class="mob-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mob-nav">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <line class="bar-top" x1="3" y1="7"  x2="21" y2="7"/>
@@ -603,8 +570,8 @@
   <div class="wrap hero-grid">
     <div>
       <div class="hero-eyebrow">
-        <img src="taro logo.jpg" alt="Taro Pumps Logo" style="height: 16px; width: auto; object-fit: contain; border-radius: 2px;">
-        2nd-generation authorised Texmo(Taro pumps) dealer
+        <svg class="icon"><use href="#i-shield"/></svg>
+        2nd-generation authorised Texmo (Taro Pumps) dealer
       </div>
       <h1>Complete water solutions, <em>at your doorstep.</em></h1>
       <p class="hero-sub">From the borewell to the last tap — pumps, pipes, starters and cables matched correctly, sold and explained by a family that's done this for two generations at Hathi Pole, Udaipur.</p>
@@ -619,12 +586,12 @@
         <svg class="icon" style="width:30px;height:30px; color:rgba(255,255,255,0.25)"><use href="#i-drop"/></svg>
       </div>
 
-      <!-- Official Listing card moved here, using the uploaded logo -->
       <div class="plate wide listing-card">
         <div class="p-label">Official listing</div>
         <div class="p-num">
-          <a href="https://www.taropumps.com/locations/rajasthan/udaipur/nirmalmachinerystores" target="_blank" rel="noopener" style="display: inline-block; margin-top: 6px;">
-            <img src="taro logo.jpg" alt="Listed on Taro Pumps" style="height: 42px; width: auto; border-radius: 4px; mix-blend-mode: multiply;">
+          <a class="taro-badge" href="https://www.taropumps.com/locations/rajasthan/udaipur/nirmalmachinerystores" target="_blank" rel="noopener">
+            <span class="tb-dot"></span>Taro Pumps · Verified Dealer
+            <svg class="icon" style="width:13px;height:13px;opacity:0.6"><use href="#i-external"/></svg>
           </a>
         </div>
       </div>
@@ -651,7 +618,6 @@
       <p>All genuine Taro Pumps models, in stock at Hathi Pole — explained in plain terms, matched to your motor power and water source.</p>
     </div>
     <div class="cat-grid">
-      <!-- 1st: Domestic -->
       <div class="cat-card">
         <div class="cat-icon"><svg class="icon"><use href="#i-home"/></svg></div>
         <span class="cat-tag">Domestic</span>
@@ -659,8 +625,6 @@
         <p>Jet pumps, pressure boosters and self-priming pumps for overhead tanks — steady water pressure for everyday home use.</p>
         <a class="cat-link" href="#visit">Ask about this range <svg class="icon"><use href="#i-arrow"/></svg></a>
       </div>
-      
-      <!-- 2nd: Industrial -->
       <div class="cat-card">
         <div class="cat-icon"><svg class="icon"><use href="#i-factory"/></svg></div>
         <span class="cat-tag">Industrial</span>
@@ -668,8 +632,6 @@
         <p>Built for factories, construction sites and commercial setups that need pumps to run longer, harder, and more reliably.</p>
         <a class="cat-link" href="#visit">Ask about this range <svg class="icon"><use href="#i-arrow"/></svg></a>
       </div>
-      
-      <!-- 3rd: Agricultural -->
       <div class="cat-card">
         <div class="cat-icon"><svg class="icon"><use href="#i-wheat"/></svg></div>
         <span class="cat-tag">Agricultural</span>
@@ -678,7 +640,6 @@
         <a class="cat-link" href="#visit">Ask about this range <svg class="icon"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-
     <div class="range-block">
       <div class="range-head">
         <h3>The full range, in one place</h3>
@@ -699,7 +660,7 @@
   </div>
 </section>
 
-<!-- PROCESS — signature element -->
+<!-- PROCESS -->
 <section class="sect sect-on-lake" id="process">
   <div class="wrap">
     <div class="sect-head">
@@ -774,7 +735,7 @@
           <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
         </div>
         <p>"Overall nice experience"</p>
-        <div class="rev-who">— khush nagda, Google review</div>
+        <div class="rev-who">— Khush Nagda, Google review</div>
       </div>
       <div class="rev-card">
         <div class="rev-stars">
@@ -927,11 +888,11 @@
     </div>
   </div>
 </footer>
+
 <script>
 (function(){
   var toggle = document.querySelector('.mob-toggle');
   var html   = document.documentElement;
-
   function open(){
     html.classList.add('mob-open');
     toggle.setAttribute('aria-expanded','true');
@@ -944,17 +905,12 @@
     toggle.setAttribute('aria-label','Open menu');
     document.body.style.overflow='';
   }
-
   toggle.addEventListener('click', function(){
     html.classList.contains('mob-open') ? close() : open();
   });
-
-  /* Close when any nav link is tapped */
   document.querySelectorAll('.mob-nav-links a, .mob-nav-actions a').forEach(function(a){
     a.addEventListener('click', close);
   });
-
-  /* Close when Escape is pressed */
   document.addEventListener('keydown', function(e){
     if(e.key==='Escape' && html.classList.contains('mob-open')) close();
   });
