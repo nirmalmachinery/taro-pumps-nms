@@ -460,31 +460,98 @@
     .brand-text span{display:none;}
   }
 
+  /* ===== MOBILE — comprehensive ===== */
   @media (max-width:760px){
-    .hero{padding:36px 0 0;}
-    .hero-grid{grid-template-columns:1fr; gap:28px; padding-bottom:36px;}
-    .hero h1{max-width:none;}
+
+    /* Spacing */
+    .wrap{padding:0 16px;}
+    .sect{padding:48px 0;}
+    .sect-head{margin-bottom:26px;}
+    .sect-head h2{font-size:clamp(1.4rem, 6vw, 1.85rem);}
+    .sect-head p{font-size:15px;}
+
+    /* Hero */
+    .hero{padding:28px 0 0;}
+    .hero-grid{grid-template-columns:1fr; gap:24px; padding-bottom:32px;}
+    .hero h1{max-width:none; font-size:clamp(1.9rem, 7.5vw, 2.6rem);}
     .hero-sub{font-size:15px; max-width:none;}
     .hero-btns{flex-direction:column; gap:10px;}
-    .hero-btns .btn{width:100%; justify-content:center; padding:14px 20px; font-size:15px;}
-    .hero-eyebrow{font-size:11px;}
-    .plate{padding:14px 18px;}
-    .plate-stack{grid-template-rows:auto auto auto; min-height:0;}
-    .plate .p-num{font-size:1.35rem;}
-    .plate .p-label{font-size:11.5px;}
-    .plate.location-card{min-height:118px;}
-    .location-card .p-num{font-size:1.08rem; max-width:none;}
+    .hero-btns .btn{width:100%; justify-content:center; padding:15px 20px; font-size:15.5px; min-height:50px;}
+    /* Eyebrow — allow wrap on very narrow screens */
+    .hero-eyebrow{
+      font-size:11px; flex-wrap:wrap; line-height:1.5;
+      padding:8px 12px; max-width:100%;
+    }
+
+    /* Plate stack — 4 cards, explicit rows */
+    .plate-stack{grid-template-rows:auto auto auto auto; gap:12px;}
+    .plate{padding:14px 16px;}
+    .plate .p-num{font-size:1.3rem;}
+    .plate .p-label{font-size:11px; max-width:none;}
+    .plate.location-card{min-height:0; padding:16px;}
+    .location-card .p-num{font-size:1rem; max-width:none;}
+    .taro-badge{font-size:13px; padding:7px 12px;}
+
+    /* Process steps — remove max-width on paragraphs */
+    .p-step{grid-template-columns:52px 1fr; gap:14px; padding:20px 0;}
+    .p-step p{max-width:none; font-size:14px;}
+    .p-step .p-idx .p-no{font-size:1.3rem;}
+
+    /* Product cards */
+    .cat-card{padding:22px 18px;}
+
+    /* Range tags — slightly smaller for better wrapping */
+    .range-tag{font-size:13px; padding:8px 13px;}
+
+    /* Why grid */
+    .why-grid{grid-template-columns:1fr; gap:20px;}
+
+    /* Reviews */
+    .rev-grid{grid-template-columns:1fr;}
+
+    /* FAQ — full width answers, finger-friendly rows */
+    .faq-q{padding:18px 4px; font-size:0.97rem;}
+    .faq-a{max-width:none; font-size:14px;}
+
+    /* Visit */
+    .visit-grid{grid-template-columns:1fr;}
+    .map-box{aspect-ratio:16/10;}
+
+    /* Call box */
+    .call-box{grid-template-columns:1fr; padding:24px 20px; gap:24px;}
+    .call-box h2{font-size:1.4rem;}
+
+    /* Fix iOS auto-zoom: inputs must be ≥16px */
+    .call-form input,
+    .call-form select{font-size:16px; padding:14px;}
+
+    /* Footer */
+    .foot-grid{grid-template-columns:1fr; gap:28px;}
+    footer{padding:40px 0 100px;} /* extra bottom pad for sticky bar */
+    .foot-bottom{flex-direction:column; gap:6px; text-align:center;}
+
+    /* Extra breathing room above sticky bar on all sections */
+    body{padding-bottom:0;}
   }
 
+  /* ===== STICKY BOTTOM CTA — mobile only ===== */
+  .mob-sticky{
+    display:none;
+    position:fixed; bottom:0; left:0; right:0; z-index:300;
+    background:var(--lake-deep);
+    border-top:1px solid rgba(255,255,255,0.14);
+    padding:10px 16px 14px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    /* safe area inset for phones with home indicator */
+    padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  }
   @media (max-width:760px){
-    .sect{padding:52px 0;}
-    .sect-head{margin-bottom:28px;}
-    .sect-head h2{font-size:clamp(1.45rem, 5.5vw, 1.9rem);}
-    .wrap{padding:0 16px;}
-    .call-box{padding:24px 20px;}
-    .call-box h2{font-size:1.45rem;}
-    footer{padding:40px 0 20px;}
-    .faq-q{padding:18px 4px;}
+    .mob-sticky{display:grid;}
+  }
+  .mob-sticky .btn{
+    padding:13px 10px; font-size:14.5px; min-height:48px;
+    justify-content:center; border-radius:10px;
   }
 </style>
 </head>
@@ -888,6 +955,16 @@
     </div>
   </div>
 </footer>
+
+<!-- STICKY MOBILE BOTTOM BAR -->
+<div class="mob-sticky" aria-label="Quick contact">
+  <a class="btn btn-wa" href="https://api.whatsapp.com/send/?phone=919460632668" target="_blank" rel="noopener">
+    <svg class="icon"><use href="#i-wa"/></svg>WhatsApp
+  </a>
+  <a class="btn btn-solid" href="tel:+919460632668">
+    <svg class="icon"><use href="#i-phone"/></svg>Call Now
+  </a>
+</div>
 
 <script>
 (function(){
