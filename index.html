@@ -432,12 +432,24 @@
   .mob-open .mob-toggle .bar-bot{transform:translateY(-5px) rotate(-45deg);}
 
   .mob-nav{
-    display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:var(--lake-deep); z-index:190;
+    position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:var(--lake-deep); z-index:400;
     flex-direction:column; padding:8px 20px 36px;
     overflow-y:auto; border-top:1px solid rgba(255,255,255,0.09);
+    /* slide down animation */
+    transform:translateY(-8px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform 0.22s ease, opacity 0.2s ease;
+    display:flex;
   }
-  .mob-open .mob-nav{display:flex;}
+  .mob-open .mob-nav{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  /* hide sticky bar while nav is open */
+  .mob-open .mob-sticky{display:none !important;}
   .mob-nav-links{display:flex; flex-direction:column; flex:1;}
   .mob-nav-links a{
     color:rgba(255,255,255,0.82); text-decoration:none;
@@ -450,6 +462,7 @@
   .mob-nav-actions{display:flex; flex-direction:column; gap:10px; padding-top:24px;}
 
   @media (max-width:880px){
+    nav.main-nav{display:none;}
     .mob-toggle{display:flex;}
     .header-actions .btn-ghost{display:none;}
     .header-inner{gap:10px; height:64px;}
@@ -970,26 +983,56 @@
 (function(){
   var toggle = document.querySelector('.mob-toggle');
   var html   = document.documentElement;
-  function open(){
+
+  function openNav(){
     html.classList.add('mob-open');
     toggle.setAttribute('aria-expanded','true');
     toggle.setAttribute('aria-label','Close menu');
-    document.body.style.overflow='hidden';
+    document.body.style.overflow = 'hidden';
   }
-  function close(){
+
+  function closeNav(){
     html.classList.remove('mob-open');
     toggle.setAttribute('aria-expanded','false');
     toggle.setAttribute('aria-label','Open menu');
-    document.body.style.overflow='';
+    document.body.style.overflow = '';
   }
+
+  /* Hamburger tap — toggle open/close */
   toggle.addEventListener('click', function(){
-    html.classList.contains('mob-open') ? close() : open();
+    html.classList.contains('mob-open') ? closeNav() : openNav();
   });
-  document.querySelectorAll('.mob-nav-links a, .mob-nav-actions a').forEach(function(a){
-    a.addEventListener('click', close);
+
+  /* Nav link tap — close first, THEN let anchor scroll happen */
+  document.querySelectorAll('.mob-nav-links a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href');
+      if(href && href.startsWith('#')){
+        e.preventDefault();           // stop default anchor jump
+        closeNav();                    // close menu + restore scroll
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){
+            // two frames = body overflow is actually cleared before scroll
+            var target = document.querySelector(href);
+            if(target){
+              target.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+          });
+        });
+      } else {
+        closeNav();
+      }
+    });
   });
+
+  /* Action buttons (WhatsApp, Call, Directions) — just close menu */
+  document.querySelectorAll('.mob-nav-actions a').forEach(function(a){
+    a.addEventListener('click', closeNav);
+  });
+
+  /* Escape key */
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && html.classList.contains('mob-open')) close();
+    if(e.key === 'Escape' && html.classList.contains('mob-open')) closeNav();
   });
 })();
 </script>
