@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +15,7 @@
   "name": "Nirmal Machinery Stores",
   "image": "",
   "telephone": "+919460632668",
-  "email": "nirmalmachineryudaipur@gmail.com",
+  "email": "nirmal.mach18@yahoo.com",
   "priceRange": "₹₹",
   "address": {
     "@type": "PostalAddress",
@@ -440,12 +441,12 @@
   .mob-toggle .bar-top, .mob-toggle .bar-mid, .mob-toggle .bar-bot{
     transition:transform 0.22s, opacity 0.18s;
   }
-  .mob-open .mob-toggle .bar-top{transform:translateY(7px) rotate(45deg);}
+  .mob-open .mob-toggle .bar-top{transform:translateY(5px) rotate(45deg);}
   .mob-open .mob-toggle .bar-mid{opacity:0; transform:scaleX(0);}
-  .mob-open .mob-toggle .bar-bot{transform:translateY(-7px) rotate(-45deg);}
+  .mob-open .mob-toggle .bar-bot{transform:translateY(-5px) rotate(-45deg);}
 
   .mob-nav{
-    display:none; position:fixed; top:72px; left:0; right:0; bottom:0;
+    display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
     background:var(--lake-deep); z-index:190;
     flex-direction:column; padding:8px 20px 36px;
     overflow-y:auto; border-top:1px solid rgba(255,255,255,0.09);
@@ -466,6 +467,14 @@
     .mob-toggle{display:flex;}
     /* Keep header from getting too crowded — hide the Get Directions ghost */
     .header-actions .btn-ghost{display:none;}
+    /* Shrink brand to fit header on small screens */
+    .header-inner{gap:10px; height:64px;}
+    .brand{gap:8px;}
+    .brand-mark{width:34px; height:34px; border-radius:8px;}
+    .brand-mark svg{width:17px; height:17px;}
+    .brand-text strong{font-size:14px;}
+    /* Hide the long subtitle — it's in the footer and hero already */
+    .brand-text span{display:none;}
   }
 
   /* ===== HERO — single column on mobile ===== */
@@ -823,7 +832,11 @@
           </div>
           <div class="visit-item">
             <div class="visit-icon"><svg class="icon"><use href="#i-phone"/></svg></div>
-            <div><h4>Phone</h4><a href="tel:+919460632668, +918005807900">+91 94606 32668, +91 8005807900</a></div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+919460632668" style="display:block;">+91 94606 32668</a>
+              <a href="tel:+918005807900" style="display:block; margin-top:4px;">+91 80058 07900</a>
+            </div>
           </div>
           <div class="visit-item">
             <div class="visit-icon"><svg class="icon"><use href="#i-mail"/></svg></div>
@@ -839,7 +852,7 @@
       <div class="map-box">
         <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Nirmal Machinery Stores location map"
-          src="https://maps.google.com/?q=Taro+Pumps+Nirmal+Machinery+Stores+Udaipur&output=embed">
+          src="https://maps.google.com/maps?q=Taro+Pumps+Nirmal+Machinery+Stores+Udaipur&output=embed">
         </iframe>
       </div>
     </div>
@@ -891,8 +904,9 @@
       </div>
       <div class="foot-col">
         <h5>Reach us</h5>
-        <a href="tel:+919460632668, +918005807900">+91 94606 32668, +91 8005807900</a>
-        <a href="mailto:nirmal.mach18@yahoo.com">nirmal.mach18@yahoo.com/a>
+        <a href="tel:+919460632668">+91 94606 32668</a>
+        <a href="tel:+918005807900">+91 80058 07900</a>
+        <a href="mailto:nirmal.mach18@yahoo.com">nirmal.mach18@yahoo.com</a>
         <a href="https://www.facebook.com/111605005096870" target="_blank" rel="noopener">Facebook</a>
         <a href="https://www.taropumps.com/locations/rajasthan/udaipur/nirmalmachinerystores" target="_blank" rel="noopener">Listed on Taro Pumps</a>
       </div>
